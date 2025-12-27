@@ -68,7 +68,7 @@ if st.button("Generate Documentary Voiceover"):
                         "text": manuscript,
                         "speed": speed,
                         "style": "default",
-                        "voice_ref": "https://tvandradiovoices.com/wp-content/uploads/Mike_C_NarrationDemo.mp3"
+                        "audio": "https://tvandradiovoices.com/wp-content/uploads/Mike_C_NarrationDemo.mp3"
                     }
                 )
                 
