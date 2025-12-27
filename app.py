@@ -61,7 +61,6 @@ if st.button("Generate Documentary Voiceover"):
                 st.write(f"Processing {len(chunks)} sections...")
                 
                 # Step 2: Running the 2025-Stable XTTS-v2 model
-                # This ID is the current "Latest" stable release on Replicate.
                 output = replicate.run(
                     "lucataco/xtts-v2:684bc3855b37866c0c65add2ff39c78f3dea3f4ff103a436465326e0f438d55e",
                     input={
@@ -72,14 +71,19 @@ if st.button("Generate Documentary Voiceover"):
                     }
                 )
                 
+                # NEW LOGIC: Convert the FileOutput into a format Streamlit can read
+                # We read the binary data from the output object
+                audio_bytes = output.read() 
+                
                 status.update(label="Audio Generated Successfully!", state="complete")
                 
-                # Preview and Download
-                st.audio(output)
+                # Preview: Streamlit can play raw bytes directly
+                st.audio(audio_bytes, format="audio/mpeg")
                 
+                # Download: Use the raw bytes for the file download
                 st.download_button(
                     label="Download MP3 for Video Editor",
-                    data=output,
+                    data=audio_bytes,
                     file_name="historical_narration.mp3",
                     mime="audio/mpeg"
                 )
