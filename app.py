@@ -60,33 +60,30 @@ if st.button("Generate Documentary Voiceover"):
                 chunks = split_text(manuscript)
                 st.write(f"Processing {len(chunks)} sections...")
                 
-                # In a production app, we would loop and concatenate. 
-                # For this widget, we target the main synthesis.
-# Updated to the latest stable OpenVoice V2 version
-output = replicate.run(
-    "lucataco/openvoice:af9877f21c4e040357eb6424ecddd7199367be2d8667ad4b6bbd306cbcd326e4",
-    input={
-        "text": manuscript,
-        "speed": speed,
-        "style": "default", # V2 works best with default style
-        "voice_ref": "https://replicate.delivery/pbxt/Jy6G0.../british_male_ref.mp3" # Placeholder for ref
+                # Step 2: Running the updated OpenVoice V2 model
+                # Note: We use the lucataco version as it is the most stable currently
+                output = replicate.run(
+                    "lucataco/openvoice:af9877f21c4e040357eb6424ecddd7199367be2d8667ad4b6bbd306cbcd326e4",
+                    input={
+                        "text": manuscript,
+                        "speed": speed,
+                        "style": "default",
+                        "voice_ref": "https://tvandradiovoices.com/wp-content/uploads/Mike_C_NarrationDemo.mp3"
                     }
                 )
-                
-                # Assume output is a URL to the audio file
-                audio_url = output 
                 
                 status.update(label="Audio Generated Successfully!", state="complete")
                 
                 # Preview and Download
-                st.audio(audio_url)
+                st.audio(output)
                 
                 st.download_button(
                     label="Download MP3 for Video Editor",
-                    data=audio_url,
+                    data=output,
                     file_name="historical_narration.mp3",
                     mime="audio/mpeg"
                 )
                 
             except Exception as e:
+                # This is the "except" block the error was asking for
                 st.error(f"Synthesis failed: {str(e)}")
