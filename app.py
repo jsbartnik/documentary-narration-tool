@@ -14,9 +14,8 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# API Configuration
-REPLICATE_API_TOKEN = "r8_MfVRMDiO4Y7LUlE4CtMvMUwED8GzwRX4KZRfV"
-os.environ["REPLICATE_API_TOKEN"] = REPLICATE_API_TOKEN
+# API Configuration - Fetches from Streamlit Secrets
+os.environ["REPLICATE_API_TOKEN"] = st.secrets["REPLICATE_API_TOKEN"]
 
 def split_text(text, max_chars=1500):
     """Splits long manuscripts into manageable chunks for the TTS engine."""
