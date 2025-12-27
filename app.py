@@ -62,15 +62,16 @@ if st.button("Generate Documentary Voiceover"):
                 
                 # In a production app, we would loop and concatenate. 
                 # For this widget, we target the main synthesis.
-                output = replicate.run(
-                    "myshell-ai/openvoice:042072322303c73950f6bc14f6ba89b4f053530089063228ea15a97576f3f15d",
-                    input={
-                        "text": manuscript,
-                        "speed": speed,
-                        "style": voice_type.split(" ")[0].lower(),
-                        "voice_ref": "https://replicate.delivery/pbxt/Jy6G0.../british_male_ref.mp3" # Placeholder for ref
-                    }
-                )
+# Updated to the latest stable OpenVoice V2 version
+output = replicate.run(
+    "lucataco/openvoice:af9877f21c4e040357eb6424ecddd7199367be2d8667ad4b6bbd306cbcd326e4",
+    input={
+        "text": manuscript,
+        "speed": speed,
+        "style": "default", # V2 works best with default style
+        "voice_ref": "YOUR_VOICE_URL_HERE" 
+    }
+)
                 
                 # Assume output is a URL to the audio file
                 audio_url = output 
