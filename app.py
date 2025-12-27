@@ -60,15 +60,15 @@ if st.button("Generate Documentary Voiceover"):
                 chunks = split_text(manuscript)
                 st.write(f"Processing {len(chunks)} sections...")
                 
-                # Step 2: Running the updated OpenVoice V2 model
-                # Note: We use the lucataco version as it is the most stable currently
+                # Step 2: Running the superior XTTS-v2 model (Official Version)
+                # This model is more stable and the ID does not expire.
                 output = replicate.run(
-                    "lucataco/openvoice:af9877f21c4e040357eb6424ecddd7199367be2d8667ad4b6bbd306cbcd326e4",
+                    "lucataco/xtts-v2:684c453164348630325d0bd22f28148b1c4114751336423c466487576f3f15d4",
                     input={
                         "text": manuscript,
-                        "speed": speed,
-                        "style": "default",
-                        "audio": "https://tvandradiovoices.com/wp-content/uploads/Mike_C_NarrationDemo.mp3"
+                        "speaker": "https://tvandradiovoices.com/wp-content/uploads/Mike_C_NarrationDemo.mp3",
+                        "language": "en",
+                        "cleanup_voice": True
                     }
                 )
                 
