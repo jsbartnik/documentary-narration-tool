@@ -69,9 +69,9 @@ output = replicate.run(
         "text": manuscript,
         "speed": speed,
         "style": "default", # V2 works best with default style
-        "voice_ref": "YOUR_VOICE_URL_HERE" 
-    }
-)
+        "voice_ref": "https://replicate.delivery/pbxt/Jy6G0.../british_male_ref.mp3" # Placeholder for ref
+                    }
+                )
                 
                 # Assume output is a URL to the audio file
                 audio_url = output 
