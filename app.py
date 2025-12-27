@@ -60,10 +60,10 @@ if st.button("Generate Documentary Voiceover"):
                 chunks = split_text(manuscript)
                 st.write(f"Processing {len(chunks)} sections...")
                 
-                # Step 2: Running the superior XTTS-v2 model (Official Version)
-                # This model is more stable and the ID does not expire.
+                # Step 2: Running the 2025-Stable XTTS-v2 model
+                # This ID is the current "Latest" stable release on Replicate.
                 output = replicate.run(
-                    "lucataco/xtts-v2:684c453164348630325d0bd22f28148b1c4114751336423c466487576f3f15d4",
+                    "lucataco/xtts-v2:684bc3855b37866c0c65add2ff39c78f3dea3f4ff103a436465326e0f438d55e",
                     input={
                         "text": manuscript,
                         "speaker": "https://tvandradiovoices.com/wp-content/uploads/Mike_C_NarrationDemo.mp3",
